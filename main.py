@@ -39,11 +39,11 @@ llm_chain = LLMChain(prompt=prompt, llm=llm)
 st.set_page_config(page_title="Affirmator")
 st.header("Affirmator")
 
-st.markdown("Are you in a relationship with someone whose the love language is *words of affirmation* but you are not good at expressing your love through words?? **Affirmator** is here for you!")
-st.markdown("**Affirmator** will help you write personalized text messages to your partner that will make them feel loved and appreciated, even if you are not good at expressing your feelings verbally.")
+st.markdown("Are you in a relationship with someone whose love language is *words of affirmation* but you are not good at expressing your love through words? **Affirmator** is here for you!")
+st.markdown("**Affirmator** will help you write personalized text messages to your partner that will make them feel loved and appreciated, even if words of affirmation do not come naturally to you.")
 st.markdown("We hope this app will get you going on your own very soon!")
 
-st.caption('Disclaimer: This app is a prototype and it is not intended to be used for any purpose other than testing and evaluation.')
+st.caption('Disclaimer: This app is a prototype and is not intended to be used for any purpose other than testing and evaluation.')
 
 with st.form(key='my_form_to_submit'):
 
