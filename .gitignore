@@ -1,4 +1,3 @@
 creds/
-.streamlit/
-*.toml
+secrets.toml
 *.json
