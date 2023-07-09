@@ -57,7 +57,7 @@ with st.form(key='my_form_to_submit'):
             ':gem: What is your relationship status?',
             ('dating', 'engaged', 'married'))
         option_name = st.text_area(label=":heart_eyes: What is their name (optional)", placeholder="Your partner's name...", key="name")
-        option_love_name = st.text_area(label=":kissing_closed_eyes: How do you call them? (optional)", placeholder="Your partner's love name...", key="love_name")
+        option_love_name = st.text_area(label=":kissing_closed_eyes: What do you call them? (optional)", placeholder="Your partner's love name...", key="love_name")
 
 
     with col2:
