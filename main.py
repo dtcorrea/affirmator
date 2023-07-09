@@ -1,12 +1,11 @@
-import os
-
 import streamlit as st
 
+from google.oauth2 import service_account
 from langchain.llms import VertexAI
 from langchain import PromptTemplate, LLMChain
 from streamlit_extras.let_it_rain import rain
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS']='./creds/google_creds.json'
+credentials = service_account.Credentials.from_service_account_info(dict(st.secrets['google_service_account']))
 
 template = """You are in a relationship with someone whose love language is words of affirmation. You are not naturally inclined to express your love through words but you want to express your love in a way that your partner will truly appreciate.
 
@@ -31,15 +30,17 @@ prompt = PromptTemplate(template=template, input_variables=['gender', 'relations
 llm = VertexAI(temperature=0.5,
                 max_output_tokens=128,
                 top_p=0.8,
-                top_k=40)
+                top_k=40,
+                project=st.secrets['google_service_account']['project_id'],
+                credentials=credentials)
 
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 st.set_page_config(page_title="Affirmator")
 st.header("Affirmator")
 
-st.markdown("Not good at expressing your love through words?? **Affirmator** is here for you!")
-st.markdown("**Affirmator** will help you write personalized text messages to your partner that will make them feel loved and appreciated, even if you're not good at expressing your feelings verbally.")
+st.markdown("Are you in a relationship with someone whose the love language is *words of affirmation* but you are not good at expressing your love through words?? **Affirmator** is here for you!")
+st.markdown("**Affirmator** will help you write personalized text messages to your partner that will make them feel loved and appreciated, even if you are not good at expressing your feelings verbally.")
 st.markdown("We hope this app will get you going on your own very soon!")
 
 st.caption('Disclaimer: This app is a prototype and it is not intended to be used for any purpose other than testing and evaluation.')
