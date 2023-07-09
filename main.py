@@ -1,3 +1,4 @@
+# Import libraries
 import streamlit as st
 
 from google.oauth2 import service_account
@@ -5,8 +6,12 @@ from langchain.llms import VertexAI
 from langchain import PromptTemplate, LLMChain
 from streamlit_extras.let_it_rain import rain
 
+# Load credentials
+# Google uses a JSON format for their credentials but Streamlit secrets are in
+# TOML only, that's why we need to load the credentials as below
 credentials = service_account.Credentials.from_service_account_info(dict(st.secrets['google_service_account']))
 
+# Prompt template to be used to generate the messages
 template = """You are in a relationship with someone whose love language is words of affirmation. You are not naturally inclined to express your love through words but you want to express your love in a way that your partner will truly appreciate.
 
 If provided, please consider some of the information below about the partner:
@@ -25,6 +30,7 @@ Requirements:
 - Make sure the message only mentions the partner and no other people. Do not assume the partners have children.
 """
 
+# Loading template with the input variables and setting up the Vertex AI model with LangChain
 prompt = PromptTemplate(template=template, input_variables=['gender', 'relationship', 'name', 'love_name', 'time', 'tone', 'add'])
 
 llm = VertexAI(temperature=0.5,
@@ -36,6 +42,7 @@ llm = VertexAI(temperature=0.5,
 
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
+### Beginning of Streamlit page
 st.set_page_config(page_title="AIffirmation")
 
 st.image(image='aiffirmation.png', use_column_width='always')
@@ -46,6 +53,7 @@ st.markdown("We hope this app will get you going on your own very soon!")
 
 st.caption('Disclaimer: This app is a prototype and is not intended to be used for any purpose other than testing and evaluation.')
 
+# Forms to get input variables
 with st.form(key='my_form_to_submit'):
 
     col1, col2 = st.columns(2)
@@ -75,6 +83,7 @@ with st.form(key='my_form_to_submit'):
 
 st.markdown("### Your message:")
 
+# Adding a submit button so the app doesn't run everything every time a new input is changed
 if submit_button:
     with st.spinner("AIffirming.."):
         message = llm_chain.run(gender=option_gender, relationship=option_relationship, name=option_name, love_name=option_love_name, time=option_time, tone=option_tone, add=option_add)
