@@ -1,4 +1,4 @@
-google
+google-auth
 langchain
 streamlit
 streamlit_extras
