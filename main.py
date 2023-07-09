@@ -36,12 +36,12 @@ llm = VertexAI(temperature=0.5,
 
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
-st.set_page_config(page_title="Affirmator")
+st.set_page_config(page_title="AIffirmation")
 
-st.image(image='affirmator.png', use_column_width='always')
+st.image(image='aiffirmation.png', use_column_width='always')
 
-st.markdown("Are you in a relationship with someone whose love language is *words of affirmation* but you are not good at expressing your love through words? **affirmator** is here for you!")
-st.markdown("**affirmator** will help you write personalized text messages to your partner that will make them feel loved and appreciated, even if words of affirmation do not come naturally to you.")
+st.markdown("Are you in a relationship with someone whose love language is *words of affirmation* but you are not good at expressing your love through words? **AIffirmation** is here for you!")
+st.markdown("**AIffirmation** will help you write personalized text messages to your partner that will make them feel loved and appreciated, even if words of affirmation do not come naturally to you.")
 st.markdown("We hope this app will get you going on your own very soon!")
 
 st.caption('Disclaimer: This app is a prototype and is not intended to be used for any purpose other than testing and evaluation.')
