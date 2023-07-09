@@ -1,0 +1,4 @@
+google
+langchain
+streamlit
+streamlit_extras
